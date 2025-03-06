@@ -1,9 +1,10 @@
-package com.task01;
+package com.task02;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.model.RetentionSetting;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,10 +17,10 @@ import java.util.Map;
         logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 
-@LambdaUrlConfig(
-        authType = AuthType.NONE,
-        invokeMode = InvokeMode.BUFFERED
-)
+//@LambdaUrlConfig(
+//        authType = AuthType.NONE,
+//        invokeMode = InvokeMode.BUFFERED
+//)
 public class HelloWorld implements RequestHandler<Map<String, Object>, Map<String, Object>> {
 
     private final Gson gson = new Gson();

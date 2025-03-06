@@ -5,12 +5,11 @@ exports.handler = async (event) => {
     const response = {
         statusCode: 200,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: 'Hello from Lambda!' })
+        body: JSON.stringify({ message: 'Hello from Lambda!' }) // Default message
     };
 
-    if (path === '/hello' && httpMethod === 'GET') {
-        response.body = JSON.stringify({ message: 'Hello from Lambda!' });
-    } else {
+    if (path !== '/hello' || httpMethod !== 'GET') {
+        // If not, return 400 with an error message
         response.statusCode = 400;
         response.body = JSON.stringify({ error: 'Invalid request' });
     }

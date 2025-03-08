@@ -17,11 +17,15 @@ import java.util.Map;
 )
 public class HelloWorld implements RequestHandler<Object, Map<String, Object>> {
 
+	@Override
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		// Constructing the response to match Proxy Integration format
+		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("statusCode", 200);
-		resultMap.put("body", "Hello from Lambda");
+		resultMap.put("body", "\"Hello from Lambda\"");  // Ensure body is a string
+		resultMap.put("headers", Map.of("Content-Type", "application/json"));  // Optional headers
 		return resultMap;
 	}
 }
